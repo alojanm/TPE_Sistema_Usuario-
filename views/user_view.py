@@ -1,6 +1,40 @@
 #Maribel
-print("Hola Maribe Iza")
+import json
+import os
 
+RUTA_USUARIOS = "usuarios.json"
+
+
+def cargar_usuarios():
+    """
+    Lee la información almacenada en usuarios.json
+    y devuelve la lista de usuarios.
+    """
+
+    if not os.path.exists(RUTA_USUARIOS):
+        return []
+
+    try:
+        with open(RUTA_USUARIOS, "r", encoding="utf-8") as archivo:
+            contenido = archivo.read().strip()
+
+            if not contenido:
+                return []
+
+            return json.loads(contenido)
+
+    except json.JSONDecodeError:
+        return []
+
+
+def guardar_usuarios(lista_usuarios):
+    """
+    Guarda la lista actualizada de usuarios
+    dentro del archivo JSON.
+    """
+
+    with open(RUTA_USUARIOS, "w", encoding="utf-8") as archivo:
+        json.dump(lista_usuarios, archivo, indent=4, ensure_ascii=False)
 
 #Ana
 from models.user_model import User

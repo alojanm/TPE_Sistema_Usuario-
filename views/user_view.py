@@ -102,3 +102,4 @@ def registrar_usuario():
     )
 
     print("Usuario registrado correctamente")
+

@@ -121,62 +121,204 @@ def registrar_usuario():
 
     print("\n=== REGISTRO DE USUARIO ===")
 
-    cedula = input("Cédula: ").strip()
-    nombre = input("Nombre: ").strip()
-    email = input("Email: ").strip().lower()
-    password = input("Contraseña: ").strip()
-
-    error = validar_campos(
-        cedula,
-        nombre,
-        email,
-        password
-    )
-
-    if error:
-
-        print(error)
-        return
-
     usuarios = cargar_usuarios()
 
-    for usuario in usuarios:
+    # ====================
+    # CÉDULA
+    # ====================
+    while True:
 
-        if usuario.get("cedula") == cedula:
+        cedula = input(
+            "Cédula: "
+        ).strip()
+
+        if not cedula:
 
             print(
-                "Error: la cédula ya se encuentra registrada."
+                "Error: la cédula es obligatoria."
             )
 
-            return
+            continue
 
-        if usuario.get("email") == email:
+        if not cedula.isdigit():
 
             print(
-                "Error: el email ya se encuentra registrado."
+                "Error: la cédula solo debe contener números."
             )
 
-            return
+            continue
 
-    nuevo_usuario = User(
-        cedula,
-        nombre,
-        email,
-        password
-    )
+        if len(cedula) != 10:
 
-    usuarios.append(
-        nuevo_usuario.to_dict()
-    )
+            print(
+                "Error: la cédula debe tener 10 dígitos."
+            )
 
-    guardar_usuarios(
-        usuarios
-    )
+            continue
 
-    print(
-        "Usuario registrado correctamente."
-    )
+        existe = False
 
+        for usuario in usuarios:
+
+            if usuario.get("cedula") == cedula:
+
+                print(
+                    "Error: la cédula ya está registrada."
+                )
+
+                existe = True
+                break
+
+        if existe:
+            continue
+
+        break
+
+    # ====================
+    # NOMBRE
+    # ====================
+    while True:
+
+        nombre = input(
+            "Nombre: "
+        ).strip()
+
+        if not nombre:
+
+            print(
+                "Error: el nombre es obligatorio."
+            )
+
+            continue
+
+        if len(nombre) < 2:
+
+            print(
+                "Error: el nombre es demasiado corto."
+            )
+
+            continue
+
+        if not nombre.replace(
+                " ",
+                ""
+        ).isalpha():
+
+            print(
+                "Error: el nombre solo debe contener letras."
+            )
+
+            continue
+
+        break
+
+    # ====================
+    # EMAIL
+    # ====================
+    while True:
+
+        email = input(
+            "Email: "
+        ).strip().lower()
+
+        if not email:
+
+            print(
+                "Error: el email es obligatorio."
+            )
+
+            continue
+
+        patron_email = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+
+        if not re.match(
+                patron_email,
+                email
+        ):
+
+            print(
+                "Error: formato ejemplo@dominio.com"
+            )
+
+            continue
+
+        existe = False
+
+        for usuario in usuarios:
+
+            if usuario.get("email") == email:
+
+                print(
+                    "Error: el email ya está registrado."
+                )
+
+                existe = True
+                break
+
+        if existe:
+            continue
+
+        break
+
+    # ====================
+    # PASSWORD
+    # ====================
+    while True:
+
+        password = input(
+            "Contraseña: "
+        ).strip()
+
+        if not password:
+
+            print(
+                "Error: la contraseña es obligatoria."
+            )
+
+            continue
+
+        if len(password) < 6:
+
+            print(
+                "Error: mínimo 6 caracteres."
+            )
+
+            continue
+
+        if not any(
+                caracter.isdigit()
+                for caracter in password
+        ):
+
+            print(
+                "Error: debe contener un número."
+            )
+
+            continue
+
+        if not any(
+                caracter.isalpha()
+                for caracter in password
+        ):
+
+            print(
+                "Error: debe contener una letra."
+            )
+
+            continue
+
+        break
+
+    # ====================
+    # GUARDAR
+    # ====================
+    nuevo_usuario = User(cedula,nombre,email,password)
+
+    usuarios.append(nuevo_usuario.to_dict())
+
+    guardar_usuarios(usuarios)
+
+    print("\nUsuario registrado correctamente.")
 
 # =====================================
 # LOGIN

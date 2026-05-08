@@ -12,7 +12,7 @@ from views.user_view import (
 def mostrar_menu():
 
     print("\n" + "=" * 40)
-    print("      SISTEMA DE USUARIOS")
+    print("      SISTEMA DE USUARIOS DEL GRUPO 9")
     print("=" * 40)
 
     print("1. Registrar usuario")
@@ -37,7 +37,7 @@ def listar_usuarios():
 
         return
 
-    print("\n=== USUARIOS REGISTRADOS ===")
+    print("\n==== USUARIOS REGISTRADOS ====")
 
     for indice, usuario in enumerate(
             usuarios,

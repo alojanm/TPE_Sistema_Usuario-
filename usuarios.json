@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "cedula": "0750050007",
+        "nombre": "Ana Lojan",
+        "email": "alojanm@unemi.edu.ec",
+        "password": "analojanunemi6"
+    }
+]

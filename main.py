@@ -1,3 +1,12 @@
+"Proyecto: Sistema de Gestión de Usuarios"
+"ASIGNATURA: Desarrollo de aplicaciones Web"
+"======Integrantes del grupo 9======"
+"-Iza Verdesoto Maribel Del Rocío"
+"-Lojan Malla Ana Elizabeth"
+"-Macías Moya Jessica Jessenia"
+"-Quishpe Herrera Jefefrson Camilo"
+"-Toaquiza Sillo Joselyn Aracely"
+
 from views.user_view import (
     registrar_usuario,
     autenticar_usuario,

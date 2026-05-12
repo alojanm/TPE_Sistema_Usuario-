@@ -10,5 +10,23 @@
         "nombre": "Maribel Iza",
         "email": "miza@unemi.edu.ec",
         "password": "maribel1"
+    },
+    {
+        "cedula": "0760060001",
+        "nombre": "Jessica Macias",
+        "email": "jmacias@unemi.edu.ec",
+        "password": "jmacias1"
+    },
+    {
+        "cedula": "0730030002",
+        "nombre": "Jefefrson Quishpe",
+        "email": "jquishpe@unemi.edu.ec",
+        "password": "jquishpe2"
+    },
+    {
+        "cedula": "0740040005",
+        "nombre": "Joselyn Toaquiza",
+        "email": "jtoaquiza@unemi.edu.ec",
+        "password": "jtoaquiza5"
     }
 ]
